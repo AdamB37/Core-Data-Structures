@@ -1,0 +1,32 @@
+{
+  "name": "core-data-structures",
+  "version": "1.0.0",
+  "description": "Core Data Structures LG",
+  "main": "index.js",
+  "scripts": {
+    "build": "babel --copy-files src --out-dir dist",
+    "build:watch": "npm run build -- --watch",
+    "test": "mocha --compilers js:babel-register ./test/*.js"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AdamB37/Core-Data-Structures.git"
+  },
+  "author": "Adam & Aileen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AdamB37/Core-Data-Structures/issues"
+  },
+  "homepage": "https://github.com/AdamB37/Core-Data-Structures#readme",
+  "devDependencies": {
+    "babel-cli": "^6.18.0",
+    "babel-core": "^6.21.0",
+    "babel-preset-es2015": "^6.18.0",
+    "chai": "^3.5.0",
+    "chai-change": "^2.1.2",
+    "mocha": "^3.2.0"
+  }
+}
