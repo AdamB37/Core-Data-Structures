@@ -28,14 +28,6 @@ class Queue {
   length() {
     return this.head > 0 ? this.head : null
   }
-
-
-
 }
-
-// const queue = new Queue()
-
-// console.log(queue.dequeue())
-
 
 export default Queue

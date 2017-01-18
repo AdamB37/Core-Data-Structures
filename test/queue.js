@@ -35,8 +35,13 @@ describe('Queue', function () {
 
   context('dequeue()', function () {
     it('returns and removes the front element in the queue', function() {
+      queue.enqueue(10)
+      queue.enqueue(11)
       queue.enqueue(12)
-      expect(queue.dequeue()).to.deep.equal(12)
+      queue.enqueue(13)
+      queue.enqueue(14)
+      
+      expect(queue.dequeue()).to.deep.equal(14)
     })
 
     it('returns null if the queue is empty', function() {
