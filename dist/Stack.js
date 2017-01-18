@@ -30,8 +30,6 @@ var Stack = function () {
       this.top = new Node();
       this.top.next = oldTop;
       this.top.data = value;
-
-      console.log(this.top);
     }
   }, {
     key: "pop",

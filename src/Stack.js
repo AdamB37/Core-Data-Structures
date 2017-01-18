@@ -16,8 +16,6 @@ class Stack {
     this.top = new Node()
     this.top.next = oldTop
     this.top.data = value
-
-    console.log(this.top)
     }
   
   pop() {
