@@ -10,12 +10,11 @@ class Queue {
   }
 
   dequeue() {
-    this.head--
-    return this.data.shift()
+    return this.head > 0 ? this.data.shift() : null
   }
 
   front() {
-    return this.data[0]
+    return this.head > 0 ? this.data[0] : null
   }
 
    back() {
@@ -27,7 +26,7 @@ class Queue {
   }
 
   length() {
-    return this.head
+    return this.head > 0 ? this.head : null
   }
 
 
@@ -35,8 +34,8 @@ class Queue {
 }
 
 // const queue = new Queue()
-// queue.enqueue('dude')
-// console.log(queue.back())
+
+// console.log(queue.dequeue())
 
 
 export default Queue

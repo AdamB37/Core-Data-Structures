@@ -25,13 +25,12 @@ var Queue = function () {
   }, {
     key: "dequeue",
     value: function dequeue() {
-      this.head--;
-      return this.data.shift();
+      return this.head > 0 ? this.data.shift() : null;
     }
   }, {
     key: "front",
     value: function front() {
-      return this.data[0];
+      return this.head > 0 ? this.data[0] : null;
     }
   }, {
     key: "back",
@@ -46,7 +45,7 @@ var Queue = function () {
   }, {
     key: "length",
     value: function length() {
-      return this.head;
+      return this.head > 0 ? this.head : null;
     }
   }]);
 
@@ -54,8 +53,8 @@ var Queue = function () {
 }();
 
 // const queue = new Queue()
-// queue.enqueue('dude')
-// console.log(queue.back())
+
+// console.log(queue.dequeue())
 
 
 exports.default = Queue;
