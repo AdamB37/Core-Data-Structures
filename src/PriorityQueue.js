@@ -1,4 +1,4 @@
-class Queue {
+class PriorityQueue {
   constructor() {
     this.data = []
     this.head = 0
@@ -35,4 +35,4 @@ class Queue {
 // console.log(queue.dequeue())
 
 
-export default Queue
+export default PriorityQueue

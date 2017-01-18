@@ -64,6 +64,10 @@ describe('Queue', function () {
       queue.enqueue(12)
       expect(queue.back()).to.deep.equal(12)
     })
+
+    it('returns null if the queue is empty', function() {
+     expect(queue.length()).to.deep.equal(null)
+    })
   })
 
   context('isEmpty()', function(){

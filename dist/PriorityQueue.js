@@ -8,15 +8,15 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var Queue = function () {
-  function Queue() {
-    _classCallCheck(this, Queue);
+var PriorityQueue = function () {
+  function PriorityQueue() {
+    _classCallCheck(this, PriorityQueue);
 
     this.data = [];
     this.head = 0;
   }
 
-  _createClass(Queue, [{
+  _createClass(PriorityQueue, [{
     key: "enqueue",
     value: function enqueue(element) {
       this.data[this.head] = element;
@@ -49,7 +49,7 @@ var Queue = function () {
     }
   }]);
 
-  return Queue;
+  return PriorityQueue;
 }();
 
 // const queue = new Queue()
@@ -57,4 +57,4 @@ var Queue = function () {
 // console.log(queue.dequeue())
 
 
-exports.default = Queue;
+exports.default = PriorityQueue;
