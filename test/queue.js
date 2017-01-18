@@ -8,7 +8,7 @@ chai.use(chaiChange)
 describe('Queue', function () {
   beforeEach(function(){
     queue = new Queue()
-  }) 
+  })
 
   it('exists', function () {
     expect(Queue).to.be.a('function')
@@ -40,7 +40,7 @@ describe('Queue', function () {
     })
 
     it('returns null if the queue is empty', function() {
-     expect(queue.length()).to.deep.equal(null)
+     expect(queue.dequeue()).to.deep.equal(null)
     })
   })
 
@@ -53,7 +53,7 @@ describe('Queue', function () {
     })
 
     it('returns null if the queue is empty', function() {
-     expect(queue.length()).to.deep.equal(null)
+     expect(queue.front()).to.deep.equal(null)
     })
   })
 
@@ -66,7 +66,7 @@ describe('Queue', function () {
     })
 
     it('returns null if the queue is empty', function() {
-     expect(queue.length()).to.deep.equal(null)
+     expect(queue.back()).to.deep.equal(null)
     })
   })
 

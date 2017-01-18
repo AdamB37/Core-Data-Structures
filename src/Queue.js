@@ -26,7 +26,7 @@ class Queue {
   }
 
   length() {
-    return this.head > 0 ? this.head : null
+    return this.head
   }
 }
 

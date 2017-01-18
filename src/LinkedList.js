@@ -1,6 +1,8 @@
 class Node {
-  let data
-  let next = null
+  constructor() {
+    this.data
+    this.next = null
+  }
 }
 
 class LinkedList {
@@ -24,6 +26,7 @@ class LinkedList {
       if(iterator.data === element) elementFound = true
       iterator = iterator.next
     }
+    return elementFound
   }
 
   find(element) {
@@ -37,8 +40,12 @@ class LinkedList {
 
   insert(element) {
     let tail = new Node()
-    this.tail.next = tail
+    tail.data = element
+    if(this.head == null) this.head = tail
+    if(this.tail != null) this.tail.next = tail
+
     this.tail = tail
+
   }
 
   insertFirst(element) {
@@ -118,3 +125,5 @@ class LinkedList {
     this.tail = null
   }
 }
+
+export default LinkedList
