@@ -20,65 +20,64 @@ class LinkedList {
   }
 
   contains(element) {
-    let elementFound = false
-    let iterator = this.head
-    while(iterator) {
-      if(iterator.data === element) elementFound = true
-      iterator = iterator.next
+    let currentNode = this.head
+    while(currentNode) {
+      if(currentNode.data === element) return true
+      currentNode = currentNode.next
     }
-    return elementFound
+    return false
   }
 
   find(element) {
-    let iterator = this.head
-    while(iterator) {
-      if(iterator.data === element) return iterator
-      iterator = iterator.next
+    let currentNode = this.head
+    while(currentNode) {
+      if(currentNode.data === element) return currentNode
+      currentNode = currentNode.next
     }
     return -1
   }
 
   insert(element) {
-    let tail = new Node()
-    tail.data = element
+    let newNode = new Node()
+    newNode.data = element
 
-    if(this.head == null) this.head = tail
-    if(this.tail != null) this.tail.next = tail
+    if(!this.head) this.head = newNode
+    if(this.tail) this.tail.next = newNode
 
-    this.tail = tail
+    this.tail = newNode
 
   }
 
   insertFirst(element) {
-    let head = new Node()
-    head.data = element
-    head.next = this.head
+    let newNode = new Node()
+    newNode.data = element
+    newNode.next = this.head
 
-    if(this.tail == null) this.tail = head
+    if(!this.tail) this.tail = newNode
 
-    this.head = head
+    this.head = newNode
   }
 
   insertBefore(match,element) {
-    let insertNode = new Node()
-    insertNode.data = element
+    let newNode = new Node()
+    newNode.data = element
     if(this.isEmpty()) {
-      this.head = insertNode
-      this.tail = insertNode
+      this.head = newNode
+      this.tail = newNode
     }
     else{
       let matchNode = this.head
-      let previous = null
+      let previousNode = null
       while(matchNode.data !== match && matchNode) {
-        previous = matchNode
+        previousNode = matchNode
         matchNode = matchNode.next
       }
 
-      insertNode.next = matchNode
+      newNode.next = matchNode
 
-      if(previous) previous.next = insertNode
+      if(previousNode) previousNode.next = newNode
 
-      if(this.head == matchNode) this.head = insertNode
+      if(this.head == matchNode) this.head = newNode
     }
 
 
@@ -86,11 +85,11 @@ class LinkedList {
   }
 
   insertAfter(match,element) {
-    let insertNode = new Node()
-    insertNode.data = element
+    let newNode = new Node()
+    newNode.data = element
     if(this.isEmpty()) {
-      this.head = insertNode
-      this.tail = insertNode
+      this.head = newNode
+      this.tail = newNode
     }
     else{
       let matchNode = this.head
@@ -98,20 +97,21 @@ class LinkedList {
       while(matchNode.data !== match && matchNode){
         matchNode = matchNode.next
       }
-      insertNode.next = matchNode.next
-      matchNode.next = insertNode
+      newNode.next = matchNode.next
+      matchNode.next = newNode
 
-      if(this.tail == matchNode) this.tail = insertNode
+      if(this.tail == matchNode) this.tail = newNode
     }
 
   }
 
   remove() {
-    let iterator = this.head
-    let previous
-    while(iterator.next != this.tail) iterator = iterator.next
-    iterator.next = null
-    this.tail = iterator
+    let currentNode = this.head
+
+    while(currentNode.next != this.tail) currentNode = currentNode.next
+
+    currentNode.next = null
+    this.tail = currentNode
   }
 
   removeFirst() {
@@ -119,28 +119,28 @@ class LinkedList {
   }
 
   isEmpty() {
-    return !(this.head) ? true : false
+    return !this.head ? true : false
   }
 
   size() {
     let count = 0
-    let iterator = this.head
+    let currentNode = this.head
 
-    while(iterator) {
+    while(currentNode) {
       count++
-      iterator=iterator.next
+      currentNode=currentNode.next
     }
 
     return count
   }
 
   clear() {
-    let iterator = this.head
+    let currentNode = this.head
 
-    while(iterator) {
-      let temp = iterator.next
-      iterator.next = null
-      iterator = temp
+    while(currentNode) {
+      let tempNode = currentNode.next
+      currentNode.next = null
+      currentNode = tempNod
     }
 
     this.head = null

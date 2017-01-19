@@ -21,57 +21,56 @@ class LinkedList {
   }
 
   contains(element) {
-    let elementFound = false
-    let iterator = this.head
-    while(iterator) {
-      if(iterator.data === element) elementFound = true
-      iterator = iterator.next
+    let newNode = this.head
+    while(newNode) {
+      if(newNode.data === element) return true
+      newNode = newNode.next
     }
-    return elementFound
+    return false
   }
 
   find(element) {
-    let iterator = this.head
-    while(iterator) {
-      if(iterator.data === element) return iterator
-      iterator = iterator.next
+    let newNode = this.head
+    while(newNode) {
+      if(newNode.data === element) return newNode
+      newNode = newNode.next
     }
     return -1
   }
 
   insert(element) {
-    let tail = new Node()
-    tail.data = element
+    let newNode = new Node()
+    newNode.data = element
 
-    if(this.head == null) this.head = tail
+    if(!this.head) this.head = newNode
 
-    if(this.tail != null) {
-      this.tail.next = tail
-      tail.previous = this.tail
+    if(this.tail) {
+      this.tail.next = newNode
+      newNode.previous = this.tail
     }
 
-    this.tail = tail
+    this.tail = newNode
   }
 
   insertFirst(element) {
-    let head = new Node()
-    head.data = element
-    head.next = this.head
+    let newNode = new Node()
+    newNode.data = element
+    newNode.next = this.head
 
-    if(this.head) this.previous = head
+    if(this.head) this.previous = newNode
 
-    if(this.tail == null) this.tail = head
+    if(!this.tail) this.tail = newNode
 
-    this.head = head
+    this.head = newNode
   }
 
   insertBefore(match,element) {
-    let insertNode = new Node()
-    insertNode.data = element
+    let newNode = new Node()
+    newNode.data = element
 
     if(this.isEmpty()) {
-      this.head = insertNode
-      this.tail = insertNode
+      this.head = newNode
+      this.tail = newNode
     }
     else{
 
@@ -81,11 +80,11 @@ class LinkedList {
         matchNode = matchNode.next
       }
 
-      insertNode.next = matchNode
+      newNode.next = matchNode
 
-      if(matchNode && matchNode.previous) matchNode.previous.next = insertNode
-      if(matchNode) matchNode.previous = insertNode
-      if(this.head == matchNode) this.head = insertNode
+      if(matchNode && matchNode.previous) matchNode.previous.next = newNode
+      if(matchNode) matchNode.previous = newNode
+      if(this.head == matchNode) this.head = newNode
     }
 
 
@@ -93,11 +92,12 @@ class LinkedList {
   }
 
   insertAfter(match,element) {
-    let insertNode = new Node()
-    insertNode.data = element
+    let newNode = new Node()
+    newNode.data = element
+
     if(this.isEmpty()) {
-      this.head = insertNode
-      this.tail = insertNode
+      this.head = newNode
+      this.tail = newNode
     }
     else{
       let matchNode = this.head
@@ -105,11 +105,11 @@ class LinkedList {
       while(matchNode.data !== match && matchNode){
         matchNode = matchNode.next
       }
-      insertNode.next = matchNode.next
-      matchNode.next = insertNode
-      insertNode.previous = matchNode
+      newNode.next = matchNode.next
+      matchNode.next = newNode
+      newNode.previous = matchNode
 
-      if(this.tail == matchNode) this.tail = insertNode
+      if(this.tail == matchNode) this.tail = newNode
     }
 
   }
@@ -125,29 +125,29 @@ class LinkedList {
   }
 
   isEmpty() {
-    return !(this.head) ? true : false
+    return !this.head ? true : false
   }
 
   size() {
     let count = 0
-    let iterator = this.head
+    let currentNode = this.head
 
-    while(iterator) {
+    while(currentNode) {
       count++
-      iterator=iterator.next
+      currentNode=currentNode.next
     }
 
     return count
   }
 
   clear() {
-    let iterator = this.head
+    let currentNode = this.head
 
-    while(iterator) {
-      let temp = iterator.next
-      iterator.next = null
-      iterator.previous = null
-      iterator = temp
+    while(currentNode) {
+      let temp = currentNode.next
+      currentNode.next = null
+      currentNode.previous = null
+      currentNode = temp
     }
 
     this.head = null
