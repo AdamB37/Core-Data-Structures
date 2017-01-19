@@ -41,6 +41,7 @@ class LinkedList {
   insert(element) {
     let tail = new Node()
     tail.data = element
+
     if(this.head == null) this.head = tail
     if(this.tail != null) this.tail.next = tail
 
@@ -52,41 +53,62 @@ class LinkedList {
     let head = new Node()
     head.data = element
     head.next = this.head
+
+    if(this.tail == null) this.tail = head
+
     this.head = head
   }
 
   insertBefore(match,element) {
     let insertNode = new Node()
     insertNode.data = element
+    if(this.isEmpty()) {
+      this.head = insertNode
+      this.tail = insertNode
+    }
+    else{
+      let matchNode = this.head
+      let previous = null
+      while(matchNode.data !== match && matchNode) {
+        previous = matchNode
+        matchNode = matchNode.next
+      }
 
-    let matchNode = this.head
-    while(matchNode.data !== match && matchNode) matchNode = matchNode.next
+      insertNode.next = matchNode
 
-    insertNode.next = matchNode.next
-    matchNode.next = insertNode
+      if(previous) previous.next = insertNode
 
-    if(this.head == matchNode) this.head = insertNode
+      if(this.head == matchNode) this.head = insertNode
+    }
+
+
+
   }
 
   insertAfter(match,element) {
     let insertNode = new Node()
     insertNode.data = element
+    if(this.isEmpty()) {
+      this.head = insertNode
+      this.tail = insertNode
+    }
+    else{
+      let matchNode = this.head
 
-    let matchNode = this.head
-    let previous = null
-    while(matchNode.data !== match && matchNode){
-      previous = matchNode
-      matchNode = matchNode.next
+      while(matchNode.data !== match && matchNode){
+        matchNode = matchNode.next
+      }
+      insertNode.next = matchNode.next
+      matchNode.next = insertNode
+
+      if(this.tail == matchNode) this.tail = insertNode
     }
 
-    insertNode.next = matchNode
-    previous.next = insertNode
-
-    if(this.tail == matchNode) this.tail = insertNode
   }
 
   remove() {
     let iterator = this.head
+    let previous
     while(iterator.next != this.tail) iterator = iterator.next
     iterator.next = null
     this.tail = iterator
@@ -126,4 +148,8 @@ class LinkedList {
   }
 }
 
+// let ll = new LinkedList()
+// ll.insert('dude')
+// ll.insert('asuh')
+// console.log(ll.head)
 export default LinkedList

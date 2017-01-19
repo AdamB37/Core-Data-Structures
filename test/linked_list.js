@@ -1,12 +1,22 @@
 import chai, { expect } from 'chai'
 import chaiChange from 'chai-change'
-import LinkedList from '../src/LinkedList'
+import LinkedList from '../src/linked_list'
 
 chai.use(chaiChange)
 
 describe('LinkedList', () => {
   it('exists', function () {
     expect(LinkedList).to.be.a('function')
+  })
+
+  context('next pointer', () => {
+    it('node should point to next node in linked list', () => {
+      const sll = new LinkedList()
+      sll.insert('dude')
+      sll.insert('asuh')
+
+      expect(sll.head.next.data).to.deep.equal('asuh')
+    })
   })
 
   context('getHeadNode()', () => {

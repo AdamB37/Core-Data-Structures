@@ -1,17 +1,17 @@
 import chai, { expect } from 'chai'
 import chaiChange from 'chai-change'
-import PriorityQueue from '../src/PriorityQueue'
+import PriorityQueue from '../src/priority_queue'
 
 chai.use(chaiChange)
   let priorityQueue
 
 describe('PriorityQueue', function () {
   beforeEach(function(){
-    priorityQeue = new PriorityQueue()
-  }) 
+    priorityQueue = new PriorityQueue()
+  })
 
   it('exists', function () {
-    expect(priorityQueue).to.be.a('function')
+    expect(PriorityQueue).to.be.a('function')
   })
 
   context('enqueue()', function () {
@@ -21,7 +21,7 @@ describe('PriorityQueue', function () {
       priorityQueue.enqueue('bro')
       priorityQueue.enqueue('foo')
 
-      expect(queue.back()).to.deep.equal('foo')
+      expect(priorityQueue.back()).to.deep.equal('foo')
     })
 
     it('increases the queue size', function () {
@@ -29,7 +29,7 @@ describe('PriorityQueue', function () {
       priorityQueue.enqueue(11)
       priorityQueue.enqueue(12)
 
-      expect(queue.length()).to.equal(3)
+      expect(priorityQueue.length()).to.equal(3)
     })
   })
 
