@@ -17,9 +17,8 @@ class Stack {
     this.top.next = oldTop
     this.top.data = value
 
-    console.log(this.top)
     }
-  
+
   pop() {
     if(this.top == null) return null
     let data = this.top.data
@@ -47,10 +46,5 @@ class Stack {
   }
 }
 
-// const stack = new Stack()
-// stack.push(10)
-// stack.push(11)
-// stack.push(12)
-// console.log(stack.length())
 
 export default Stack
