@@ -8,7 +8,7 @@ chai.use(chaiChange)
 describe('Stack', function () {
   beforeEach(function(){
     stack = new Stack()
-  }) 
+  })
 
   it('exists', function () {
     expect(Stack).to.be.a('function')
