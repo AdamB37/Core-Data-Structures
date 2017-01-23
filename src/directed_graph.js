@@ -17,17 +17,15 @@ function recursiveVisit(vertex, callback, graph) {
 }
 
 function recursiveShortestPath(vertexA, vertexB, graph, travelled = [], paths = [] ,distance = 0) {
-  // console.log("node  ::::    ",graph[vertexA],"       node     :::::    ",vertexA)
   if(vertexB in graph[vertexA].edges) {
     travelled.push(vertexB)
     distance += graph[vertexA].edges[vertexB]
     paths.push({travelled: travelled, distance: distance})
-  }
-  else{
+  } else {
     let tempDistance = 0
     for (let key in graph[vertexA].edges) {
       travelled.push(key)
-      tempDistance = distance + graph[vertexA].edges[key]   ///// problem ////////
+      tempDistance = distance + graph[vertexA].edges[key]
       recursiveShortestPath(key, vertexB, graph, travelled, paths, tempDistance )
     }
   }

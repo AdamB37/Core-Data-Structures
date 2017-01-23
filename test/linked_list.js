@@ -16,7 +16,6 @@ describe('LinkedList', () => {
       sll.insert(11)
       sll.insert(12)
       sll.insert(13)
-
       expect(sll.getHeadNode().data).to.deep.equal(10)
     })
   })
@@ -46,7 +45,6 @@ describe('LinkedList', () => {
     it('returns the node of the found data element in the list or -1 if not found', () => {
       const sll = new LinkedList()
       sll.insert(10)
-
     expect(sll.find(10)).to.eql({data: 10, next: null })
     })
   })

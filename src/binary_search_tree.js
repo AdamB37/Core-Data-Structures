@@ -1,9 +1,9 @@
 class Node {
-  constructor() {
+  constructor(data) {
     this.parent = null
     this.rightChild = null
     this.leftChild = null
-    this.data
+    this.data = data
   }
 }
 //////HELPER FUNCTIONS
@@ -11,24 +11,40 @@ function hasChildren(node) {
   return node.rightChild || node.leftChild
 }
 
+function findReplacementNode(currentNode) {
+  if(!hasChildren(currentNode)) return currentNode
+  if(currentNode.leftChild) return findReplacementNode(currentNode.leftChild)
+  return currentNode.rightChild
+}
+
+function addToLeftTree(currentNode, newNode) {
+  if(!currentNode.leftChild) {
+    currentNode.leftChild = newNode
+    newNode.parent = currentNode
+  }
+  else {
+    return recursiveInsert(currentNode.leftChild,newNode)
+  }
+}
+
+
+function addToRightTree(currentNode,newNode) {
+  if(!currentNode.rightChild) {
+    currentNode.rightChild = newNode
+    newNode.parent = currentNode
+  }
+  else {
+    return recursiveInsert(currentNode.rightChild,newNode)
+  }
+}
+
+
 function recursiveInsert(startNode,newNode) {
   if(newNode.data<=startNode.data) {
-    if(!startNode.leftChild) {
-      startNode.leftChild = newNode
-      newNode.parent = startNode
-    }
-    else {
-      return recursiveInsert(startNode.leftChild,newNode)
-    }
+    addToLeftTree(startNode,newNode)
   }
   else{
-    if(!startNode.rightChild) {
-      startNode.rightChild = newNode
-      newNode.parent = startNode
-    }
-    else {
-      return recursiveInsert(startNode.rightChild,newNode)
-    }
+    addToRightTree(startNode,newNode)
   }
 }
 
@@ -36,25 +52,19 @@ function recursiveSearch(searchNode,value) {
   if(value===searchNode.data) {
     return searchNode
   }
-  if(value < searchNode.data) {
-    if(searchNode.leftChild) {
-      return recursiveSearch(searchNode.leftChild, value)
-    }
+  if(value < searchNode.data && searchNode.leftChild) {
+    return recursiveSearch(searchNode.leftChild, value)
   }
-  else {
-    if(searchNode.rightChild) {
-      return recursiveSearch(searchNode.rightChild, value)
-    }
+  if(searchNode.rightChild) {
+    return recursiveSearch(searchNode.rightChild, value)
   }
   return null
 }
 
 function recursiveCount(node,count=0) {
+  if(!node) return count
 
-  if(node.leftChild) count = recursiveCount(node.leftChild,count+1)
-  if(node.rightChild) count = recursiveCount(node.rightChild,count+1)
-
-  return count
+  return 1 + recursiveCount(node.leftChild) + recursiveCount(node.rightChild)
 }
 
 function traverseInOrder(node, callback) {
@@ -93,8 +103,7 @@ class BinarySearchTree {
   }
 
   insert(element) {
-    let newNode = new Node()
-    newNode.data = element
+    let newNode = new Node(element)
     if(!this.root){
       this.root = newNode
     }
@@ -109,10 +118,26 @@ class BinarySearchTree {
   }
 
   remove(value) {
-    if(this.root == recursiveSearch(this.root, value)) this.root = null
+    const searchNode = recursiveSearch(this.root, value)
+    if(this.root == searchNode) {
+      if(!hasChildren(this.root)) {
+        this.root = null
+      }
+      else {
+        let replaceNode = findReplacementNode(this.root.rightChild)
+        this.root.data = replaceNode.data
 
-    if(this.root){
-      let toBeReplacedNode = recursiveSearch(this.root, value)
+        if(replaceNode.parent.rightChild == replaceNode){
+          replaceNode.parent.rightChild = null
+        }
+        else{
+          replaceNode.parent.leftChild = null
+        }
+
+      }
+    }
+    else if(this.root){
+      let toBeReplacedNode = searchNode
       if(!hasChildren(toBeReplacedNode)) {
         if(toBeReplacedNode.parent.rightChild == toBeReplacedNode) {
           toBeReplacedNode.parent.rightChild = null
@@ -132,16 +157,7 @@ class BinarySearchTree {
         }
       }
       else {
-        let replaceNode = toBeReplacedNode.rightChild
-        //traverse through tree to find replacement for remove
-        while(hasChildren(replaceNode)) {
-          while(replaceNode.leftChild){
-            replaceNode = replaceNode.leftChild
-          }
-          while(replaceNode.rightChild && !replaceNode.leftChild){
-            replaceNode = replaceNode.rightChild
-          }
-        }
+        let replaceNode = findReplacementNode(toBeReplacedNode.rightChild)
         toBeReplacedNode.data = replaceNode.data
 
         if(replaceNode.parent.rightChild == replaceNode){
@@ -181,12 +197,5 @@ class BinarySearchTree {
     return recursiveCount(this.root, 1)
   }
 }
-// let bst = new BinarySearchTree()
-// bst.insert(25)
-// bst.insert(10)
-// bst.insert(15)
-// bst.insert(5)
-// bst.insert(30)
-// // const array1 = []
-// bst.traverse('inOrder', (element) => {console.log(element)})
+
 export default BinarySearchTree

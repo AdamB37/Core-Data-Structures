@@ -6,7 +6,7 @@ chai.use(chaiChange)
 
 let ht
 
-describe.only('HashTable', () => {
+describe('HashTable', () => {
   beforeEach(() => {
     ht = new HashTable()
   })

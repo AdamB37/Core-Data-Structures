@@ -61,6 +61,18 @@ describe('BinarySearchTree', () => {
         expect(bst.search(15)).to.deep.equal(null)
       })
     })
+    context('node to be removed is the root with children', () => {
+      it('delete root node and restructures the tree', () => {
+        bst.insert(10)
+        bst.insert(2)
+        bst.insert(30)
+        bst.insert(8)
+        bst.insert(15)
+        bst.insert(6)
+        bst.remove(10)
+        expect(bst.root).to.deep.equal(15)
+      })
+    })
     context('node to be removed has child nodes', () => {
       it('delete and replace node with minimum value to the right of the node', () => {
         bst.insert(10)
