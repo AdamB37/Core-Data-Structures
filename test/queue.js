@@ -1,6 +1,6 @@
 import chai, { expect } from 'chai'
 import chaiChange from 'chai-change'
-import Queue from '../src/Queue'
+import Queue from '../src/queue'
 
 chai.use(chaiChange)
   let queue
@@ -40,7 +40,7 @@ describe('Queue', function () {
     })
 
     it('returns null if the queue is empty', function() {
-     expect(queue.dequeue()).to.deep.equal(null)
+     expect(queue.dequeue()).to.equal(undefined)
     })
   })
 
@@ -53,7 +53,7 @@ describe('Queue', function () {
     })
 
     it('returns null if the queue is empty', function() {
-     expect(queue.front()).to.deep.equal(null)
+     expect(queue.front()).to.equal(undefined)
     })
   })
 
@@ -66,7 +66,7 @@ describe('Queue', function () {
     })
 
     it('returns null if the queue is empty', function() {
-     expect(queue.back()).to.deep.equal(null)
+     expect(queue.back()).to.deep.equal(undefined)
     })
   })
 

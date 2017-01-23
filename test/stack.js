@@ -1,6 +1,6 @@
 import chai, { expect } from 'chai'
 import chaiChange from 'chai-change'
-import Stack from '../src/Stack'
+import Stack from '../src/stack'
 
 chai.use(chaiChange)
   let stack
@@ -8,7 +8,7 @@ chai.use(chaiChange)
 describe('Stack', function () {
   beforeEach(function(){
     stack = new Stack()
-  }) 
+  })
 
   it('exists', function () {
     expect(Stack).to.be.a('function')

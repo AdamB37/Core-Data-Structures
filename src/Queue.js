@@ -1,38 +1,31 @@
 class Queue {
   constructor() {
     this.data = []
-    this.head = 0
   }
 
   enqueue(element) {
-    this.data[this.head] = element
-    this.head++
+    this.data[this.data.length] = element
   }
 
   dequeue() {
-    return this.head > 0 ? this.data.shift() : null
+    return this.data.shift()
   }
 
   front() {
-    return this.head > 0 ? this.data[0] : null
+    return this.data[0]
   }
 
    back() {
-    return this.head > 0 ? this.data[this.head-1] : null
+    return this.data[this.data.length-1]
    }
 
   isEmpty() {
-    return this.head === 0
+    return this.data.length === 0
   }
 
   length() {
-    return this.head
+    return this.data.length
   }
 }
-
-// const queue = new Queue()
-
-// console.log(queue.dequeue())
-
 
 export default Queue

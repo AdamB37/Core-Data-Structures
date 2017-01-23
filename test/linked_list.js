@@ -1,6 +1,6 @@
 import chai, { expect } from 'chai'
 import chaiChange from 'chai-change'
-import LinkedList from '../src/LinkedList'
+import LinkedList from '../src/linked_list'
 
 chai.use(chaiChange)
 
