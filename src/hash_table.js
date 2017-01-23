@@ -13,16 +13,14 @@ class LinkedList {
 
   addNode(key,value) {
     if(!this.head) {
-      this.head = new Node(key, value)
+      this.head = new Node(key,value)
     }
     else {
-      let currentNode = this.head
-      while(currentNode.next) {
-
-        currentNode = currentNode.next
-      }
-      currentNode.next = new Node(key,value)
+      let nextNode = this.head
+      this.head = new Node(key,value)
+      this.head.next = nextNode
     }
+
   }
 
   removeNode(key) {
