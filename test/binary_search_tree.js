@@ -70,7 +70,7 @@ describe('BinarySearchTree', () => {
         bst.insert(15)
         bst.insert(6)
         bst.remove(10)
-        expect(bst.root).to.deep.equal(15)
+        expect(bst.root.data).to.deep.equal(15)
       })
     })
     context('node to be removed has child nodes', () => {
