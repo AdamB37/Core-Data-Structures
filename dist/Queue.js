@@ -52,9 +52,4 @@ var Queue = function () {
   return Queue;
 }();
 
-// const queue = new Queue()
-
-// console.log(queue.dequeue())
-
-
 exports.default = Queue;
