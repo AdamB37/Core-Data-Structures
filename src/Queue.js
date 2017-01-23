@@ -28,8 +28,4 @@ class Queue {
   }
 }
 
-<<<<<<< HEAD
 export default Queue
-=======
-export default Queue
->>>>>>> origin

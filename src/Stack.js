@@ -12,13 +12,16 @@ class Stack {
 
   push(value) {
     const oldTop = this.top
+
     this.top = new Node()
     this.top.next = oldTop
     this.top.data = value
     }
 
   pop() {
-    if(this.top == null) return null
+    if(this.top == null) {
+      return null
+    }
     let data = this.top.data
     this.top = this.top.next
     return data
