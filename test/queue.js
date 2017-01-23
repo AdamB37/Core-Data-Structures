@@ -40,8 +40,8 @@ describe('Queue', function () {
       queue.enqueue(12)
       queue.enqueue(13)
       queue.enqueue(14)
-      
-      expect(queue.dequeue()).to.deep.equal(14)
+
+      expect(queue.dequeue()).to.deep.equal(10)
     })
 
     it('returns null if the queue is empty', function() {
