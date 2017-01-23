@@ -55,6 +55,10 @@ describe('Stack', function () {
           return stack.length() === 2
         })
       })
+
+      it('return what is popped', function() {
+        expect(stack.pop()).to.deep.equal('bar')
+      })
     })
   })
 
